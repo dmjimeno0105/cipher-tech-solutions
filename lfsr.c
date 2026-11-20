@@ -1,5 +1,3 @@
-#include <stdint.h>
-#include <stdlib.h>
 #include "lfsr.h"
 
 unsigned char *Crypt(unsigned char *data, int datalength, unsigned int initialValue)
