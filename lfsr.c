@@ -7,7 +7,6 @@ unsigned char *Crypt(unsigned char *data, int datalength, unsigned int initialVa
     unsigned int state = initialValue;
     unsigned int feedback = 0x87654321;
     const int STEPS = 8;
-    uint8_t crypt = 0;
     for (int i = 0; i < datalength; i++)
     {
         for (int j = 0; j < STEPS; j++)
@@ -22,8 +21,7 @@ unsigned char *Crypt(unsigned char *data, int datalength, unsigned int initialVa
                 state = state >> 1;
             }
         }
-        crypt = state;
-        data[i] = data[i] ^ crypt;
+        data[i] = data[i] ^ state;
     }
     return data;
 }
