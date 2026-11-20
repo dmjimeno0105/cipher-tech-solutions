@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
     char magic[6];
     uint32_t entryListAddress;
     memcpy(&entryListAddress, head + sizeof(magic), sizeof(entryListAddress));
+    free(head);
+    head = NULL;
 
     IterateEntryList(fd, entryListAddress);
 }
@@ -52,6 +54,8 @@ void IterateEntryList(int fd, off_t entryListAddress)
         read(fd, entry, 20);
         entryCount++;
     }
+    free(entry);
+    entry = NULL;
 }
 
 void IterateBlockList(int fd, off_t blockListAddress)
@@ -77,4 +81,6 @@ void IterateBlockList(int fd, off_t blockListAddress)
         read(fd, block, BLOCK_SIZE);
         blockCount++;
     }
+    free(block);
+    block = NULL;
 }
